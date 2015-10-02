@@ -10,5 +10,21 @@ describe 'DataAsMessage', ->
 
   describe '->onEnvelope', ->
     describe 'when called with an envelope', ->
+      beforeEach ->
+        envelope =
+          data:
+            prince: 'akeem'
+        @result = @sut.onEnvelope envelope
+
       it 'should return the message', ->
-        expect(@sut.onEnvelope({message: 'anything'})).to.deep.equal 'anything'
+        expect(@result).to.deep.equal prince: 'akeem'
+
+    describe 'when called with another envelope', ->
+      beforeEach ->
+        envelope =
+          data:
+            king: 'joffe'
+        @result = @sut.onEnvelope envelope
+
+      it 'should return the message', ->
+        expect(@result).to.deep.equal king: 'joffe'
